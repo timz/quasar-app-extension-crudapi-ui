@@ -1,30 +1,48 @@
 # Quasar App Extension crudapi-ui
-
-> Add a short description of your App Extension. What does it do? How is it beneficial? Why would someone want to use it?
-
-[![npm](https://img.shields.io/npm/v/quasar-app-extension-crudapi-ui.svg?label=quasar-app-extension-crudapi-ui)](https://www.npmjs.com/package/quasar-app-extension-crudapi-ui)
-[![npm](https://img.shields.io/npm/dt/quasar-app-extension-crudapi-ui.svg)](https://www.npmjs.com/package/quasar-app-extension-crudapi-ui)
+Компоненты фронтенда CrudApi
 
 # Install
 ```bash
-quasar ext add crudapi-ui
+yarn add --dev https://github.com/Timz/quasar-app-extension-crudapi-ui
+quasar ext invoke crudapi-ui
 ```
-Quasar CLI will retrieve it from NPM and install the extension.
-
-## Prompts
-
-> If your app extension uses prompts, explain them here, otherwise remove this section and remove prompts.js file.
 
 # Uninstall
 ```bash
 quasar ext remove crudapi-ui
 ```
 
-# Info
-> Add longer information here that will help the user of your app extension.
+## Компоненты
 
-# Other Info
-> Add other information that's not as important to know
+| Название               | Описание                                                                     |
+|------------------------|------------------------------------------------------------------------------|
+| **buttons/**           |                                                                              |
+| `CrudButtonInBar`      | Кнопка для использования в кнопочных панелях для `Crud*Card`                 |
+| `CrudTableButton`      | Кнопка действия для `CrudTable`                                              |
+| **inputs/**            |                                                                              |
+| `CrudCheckbox`         | Поле чекбокса                                                                | 
+| `CrudDateTime`         | Поле для Date, DateTime, Time                                                |
+| `CrudMobile`           | Поле для ввода мобильного                                                    |
+| `CrudNumber`           | Поля для ввода числовых значений (в т.ч. с дробной частью)                   |
+| `CrudSelectorClient`   | Поле выбора из с писка с подгрузкой всех значений                            |
+| `CrudSelectorServer`   | Поле выбора из с писка с sever-side подгрузкой значений                      |
+| `CrudString`           | Поле для ввода строковых значений                                            |
+| `CrudToggle`           | Поле с переключателем (аналог чекбокса)                                      |
+| **templates/**         |                                                                              |
+| `CrudEditCard`         | Стандартная форма для правки модели                                          |
+| `CrudEditTab`          | Дочерний Tab `CrudEditCard` для отображения/правки связанных данных в форме  |
+| `CrudIndexCard`        | Стандартная форма Index страниц                                              |
+| `CrudListWithCheckbox` | Дочерний Tab-список с чекбоксами для `CrudEditCard`                          |
+| `CrudTable`            | Таблица для навигации по списку моделей                                      |
+
+## Использование
+### Пример
+Вставляем CrudString для поля модели username. С валидацией: обязательное и длинной от 2 до 150 символов
+```vue 
+<crud-string v-model="username" label="Логин *"
+:rules="[$v.required(), $v.strMinLength(2), $v.strMaxLength(150)]">
+</input-string>
+```
 
 # License
 MIT (c) Tim <timugatu@mail.ru>
