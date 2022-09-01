@@ -7,13 +7,10 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Timz/quasar-app-extension-crudapi-ui"
   },
   "bugs": "",
-  "homepage": "",
-  "dependencies": {
-    "quasar-ui-crudapi-ui": "latest"
-  },
+  "homepage": "https://github.com/Timz/quasar-app-extension-crudapi-ui",
   "engines": {
     "node": ">= 8.9.0",
     "npm": ">= 5.6.0",
