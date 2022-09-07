@@ -4,6 +4,8 @@
 # Install
 ```bash
 yarn add --dev https://github.com/Timz/quasar-app-extension-crudapi-ui
+```
+```bash
 quasar ext invoke crudapi-ui
 ```
 

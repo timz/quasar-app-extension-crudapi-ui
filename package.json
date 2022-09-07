@@ -1,10 +1,13 @@
 {
   "name": "quasar-app-extension-crudapi-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Quasar App Extension",
   "author": "Tim <timugatu@mail.ru>",
   "license": "MIT",
   "main": "src/index.js",
+  "files": [
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Timz/quasar-app-extension-crudapi-ui"

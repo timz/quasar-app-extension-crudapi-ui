@@ -21,7 +21,7 @@
 
 <script setup>
 import {ref, onMounted} from 'vue'
-import {api} from "boot/axios"
+import {api} from "@crudapi/boot/axios"
 import {useRoute} from 'vue-router'
 
 const name = "CrudListWithCheckbox"
