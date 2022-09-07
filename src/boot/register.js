@@ -6,6 +6,7 @@ import CrudEditCard from '../components/templates/CrudEditCard'
 import CrudEditTab from '../components/templates/CrudEditTab'
 import CrudIndexCard from '../components/templates/CrudIndexCard'
 import CrudListWithCheckbox from '../components/templates/CrudListWithCheckbox'
+import CrudTable from '../components/templates/CrudTable'
 
 import CrudString from '../components/inputs/CrudString'
 import CrudCheckbox from '../components/inputs/CrudCheckbox'
@@ -23,6 +24,7 @@ export default boot(({ app }) => {
   app.component('CrudEditTab', CrudEditTab)
   app.component(CrudIndexCard.name, CrudIndexCard)
   app.component('CrudListWithCheckbox', CrudListWithCheckbox)
+  app.component('CrudTable', CrudTable)
 
   app.component(CrudString.name, CrudString)
   app.component(CrudCheckbox.name, CrudCheckbox)
