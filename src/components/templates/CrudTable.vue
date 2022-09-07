@@ -57,12 +57,10 @@
 
 <script>
 
-import {Notify} from "quasar";
-import CrudTableButton from "components/buttons/CrudTableButton";
+import {Notify} from "quasar"
 
 export default {
   name: "CrudTable",
-  components: {CrudTableButton},
   inject: ['store'],
   props: {
     buttons: {
