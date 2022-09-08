@@ -2,13 +2,13 @@ import {boot} from "quasar/wrappers"
 import axios from 'axios'
 import {Notify} from 'quasar'
 
-const requestHandler = request => {
-    const token = localStorage.getItem(process.env.AUTH_TOKEN_NAME)
-    request.headers.Authorization = 'Bearer ' + token
-    request.headers.accept = 'application/json'
-
-    return request;
-};
+// const requestHandler = request => {
+//     const token = localStorage.getItem(process.env.AUTH_TOKEN_NAME)
+//     request.headers.Authorization = 'Bearer ' + token
+//     request.headers.accept = 'application/json'
+//
+//     return request;
+// };
 
 const responseHandler = response => {
     if (response.data.status === false) {
@@ -83,22 +83,17 @@ const errorHandler = error => {
 };
 
 function getBaseURL(){
-    const fromStorage = localStorage.getItem(process.env.URLS_FROM_LOCALSTORAGE)
-    return fromStorage === true ? localStorage.getItem(process.env.BASE_URL) : process.env.BASE_URL
+    // const fromStorage = localStorage.getItem(process.env.URLS_FROM_LOCALSTORAGE)
+    // console.warn(fromStorage)
+    return process.env.URLS_FROM_LOCALSTORAGE === true ? localStorage.getItem(process.env.BASE_URL) : process.env.BASE_URL
 }
 
 function getBaseApiURL(){
-    const fromStorage = localStorage.getItem(process.env.URLS_FROM_LOCALSTORAGE)
-    return fromStorage === true ? localStorage.getItem(process.env.BASE_API_URL) : process.env.BASE_API_URL
+    return process.env.URLS_FROM_LOCALSTORAGE === true ? localStorage.getItem(process.env.BASE_API_URL) : process.env.BASE_API_URL
 }
-
-// const fromStorage = localStorage.getItem(process.env.URLS_FROM_LOCALSTORAGE)
-// const BASE_API_URL = fromStorage === true ? localStorage.getItem(process.env.BASE_API_URL) : process.env.BASE_API_URL
-// const BASE_URL = fromStorage === true ? localStorage.getItem(process.env.BASE_URL) : process.env.BASE_URL
 
 export const api = axios.create({baseURL: getBaseApiURL()})
 api.interceptors.request.use(
-    // (request) => requestHandler(request),
     (request) => {
         console.warn(getBaseApiURL())
         request.baseURL = getBaseApiURL()
@@ -115,10 +110,8 @@ api.interceptors.response.use(
 );
 export const axi = axios.create({baseURL: getBaseURL()})
 axi.interceptors.request.use(
-    // (request) => requestHandler(request),
     (request) => {
         request.baseURL = getBaseURL()
-        console.warn(getBaseURL())
         const token = localStorage.getItem(process.env.AUTH_TOKEN_NAME)
         request.headers.Authorization = 'Bearer ' + token
         request.headers.accept = 'application/json'
