@@ -1,15 +1,6 @@
 import {boot} from "quasar/wrappers"
 import axios from 'axios'
 import {Notify} from 'quasar'
-
-// const requestHandler = request => {
-//     const token = localStorage.getItem(process.env.AUTH_TOKEN_NAME)
-//     request.headers.Authorization = 'Bearer ' + token
-//     request.headers.accept = 'application/json'
-//
-//     return request;
-// };
-
 const responseHandler = response => {
     if (response.data.status === false) {
         let msg = ''
@@ -95,7 +86,6 @@ function getBaseApiURL(){
 export const api = axios.create({baseURL: getBaseApiURL()})
 api.interceptors.request.use(
     (request) => {
-        console.warn(getBaseApiURL())
         request.baseURL = getBaseApiURL()
         const token = localStorage.getItem(process.env.AUTH_TOKEN_NAME)
         request.headers.Authorization = 'Bearer ' + token
