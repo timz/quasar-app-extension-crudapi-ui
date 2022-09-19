@@ -16,11 +16,12 @@
     <div v-if="$slots['filter-form']" v-show="filterPanel" class="bg-blue-grey-1 q-pa-sm"
          style="border-bottom: #e0e0e0 solid 2px">
       <div class="column">
-        <div class="row q-gutter-xs">
+        <q-form class="row q-gutter-xs">
           <slot name="filter-form"></slot>
           <q-btn class="self-center" unelevated outline label="Сброс" @click="store.resetFilter()"
                  color="secondary"></q-btn>
-        </div>
+        </q-form>
+
       </div>
     </div>
     <q-card-section class="q-pb-none q-pa-none" style="min-height: 80px">

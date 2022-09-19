@@ -34,7 +34,7 @@ export default defineComponent({
       type: String,
       validator: function (value) {
         // Значение должно соответствовать одной из этих строк
-        return ['email', 'text', 'tel', 'hidden', 'date', 'time', 'textarea', 'password','number'].indexOf(value) !== -1
+        return ['email', 'text', 'tel', 'hidden', 'date', 'time', 'fulltime', 'textarea', 'password','number'].indexOf(value) !== -1
       }
     },
     prefix: String,

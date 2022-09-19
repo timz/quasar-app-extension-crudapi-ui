@@ -1,16 +1,21 @@
 <template>
   <q-page padding>
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 q-mb-md q-pr-md">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 q-mb-md q-pr-md">
         <h5 class="q-mt-sm q-mb-lg">
           {{ titlePage ?? 'Заголовок страницы не указан в router.meta.titleEdit/titleNew' }}
         </h5>
-        <q-form ref="editForm" greedy @submit="submitModel" class="q-gutter-md">
-          <slot></slot>
-          <q-btn unelevated label="Сохранить" type="submit" color="light-blue-10"></q-btn>
+        <q-form ref="editForm" greedy @submit="submitModel">
+          <div class="row q-col-gutter-sm">
+            <slot></slot>
+          </div>
+          <q-btn class="q-mt-md q-mr-md" unelevated :label="store.editModel._forceSave===true?'Перезаписать':'Сохранить'"
+                 type="submit" color="secondary"></q-btn>
+          <q-btn class="q-mt-md" unelevated label="Сбросить" color="blue-grey-1 text-blue-grey-8" @click="loadModel"></q-btn>
+
         </q-form>
       </div>
-      <div v-if="$route.params.id" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 q-mb-md">
+      <div v-if="$route.params.id" class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 q-mb-md">
         <q-tabs v-model="tab" active-color="blue-grey-1" class="bg-blue-grey-7 text-blue-grey-3"
                 indicator-color="transparent"
                 align="left"
@@ -50,7 +55,7 @@ const props = defineProps({
 const currentRoute = useRoute()
 const titlePage = currentRoute.params.id ? currentRoute.meta.titleEdit : currentRoute.meta.titleNew
 
-onMounted(async () => {
+const loadModel = async () => {
   $q.loading.show()
   props.store.resetModel()
   await nextTick()
@@ -58,7 +63,7 @@ onMounted(async () => {
   await props.store.loadModel(currentRoute.params.id)
   editForm.value.resetValidation()
   $q.loading.hide()
-})
+}
 
 const submitModel = async () => {
   $q.loading.show()
@@ -68,5 +73,9 @@ const submitModel = async () => {
   }
   $q.loading.hide()
 }
+
+onMounted(async () => {
+await loadModel()
+})
 </script>
 

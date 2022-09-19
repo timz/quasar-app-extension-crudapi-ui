@@ -11,6 +11,8 @@ import CrudTable from '../components/templates/CrudTable'
 import CrudString from '../components/inputs/CrudString'
 import CrudCheckbox from '../components/inputs/CrudCheckbox'
 import CrudDateTime from '../components/inputs/CrudDateTime'
+import CrudDate from '../components/inputs/CrudDate'
+import CrudTime from '../components/inputs/CrudTime'
 import CrudMobile from '../components/inputs/CrudMobile'
 import CrudNumber from '../components/inputs/CrudNumber'
 import CrudToggle from '../components/inputs/CrudToggle'
@@ -29,6 +31,8 @@ export default boot(({ app }) => {
   app.component(CrudString.name, CrudString)
   app.component(CrudCheckbox.name, CrudCheckbox)
   app.component(CrudDateTime.name, CrudDateTime)
+  app.component(CrudDate.name, CrudDate)
+  app.component(CrudTime.name, CrudTime)
   app.component(CrudMobile.name, CrudMobile)
   app.component(CrudNumber.name, CrudNumber)
   app.component(CrudToggle.name, CrudToggle)

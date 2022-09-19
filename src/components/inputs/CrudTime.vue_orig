@@ -2,19 +2,7 @@
   <q-input ref="field" :model-value="displayValue" :dense="dense" :outlined="outlined" :label="label" reactive-rules
            lazy-rules :rules="rules">
     <template #append>
-      <q-btn dense unelevated outline color="secondary" icon="event"
-             v-if="['date', 'dateTime'].indexOf(pickerType) !== -1">
-        <q-popup-proxy ref="qDateProxy">
-          <q-date minimal :model-value="value" @update:model-value="onUpdateValue" :mask="valueFormat"
-                  emit-immediately>
-            <div class="row items-center justify-end">
-              <q-btn v-close-popup label="Закрыть" color="primary" flat/>
-            </div>
-          </q-date>
-        </q-popup-proxy>
-      </q-btn>
-      <q-btn dense unelevated outline color="secondary" icon="access_time"
-             v-if="['time', 'dateTime'].indexOf(pickerType) !== -1">
+      <q-btn dense unelevated outline color="secondary" icon="access_time">
         <q-popup-proxy ref="qTimeProxy">
           <q-time minimal :model-value="value" @update:model-value="onUpdateValue" :mask="valueFormat" emit-immediately
                   :minute-options="[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]"
@@ -35,7 +23,7 @@ import {i18n} from 'boot/i18n'
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: "CrudDateTime",
+  name: "CrudTime",
   inheritAttrs: false,
   props: {
     rules: {
@@ -52,15 +40,6 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
-    pickerType: {
-      type: String,
-      validator: function (value) {
-        // Значение должно соответствовать одной из этих строк
-        return ['date', 'time', 'dateTime'].indexOf(value) !== -1
-      },
-      default: 'dateTime'
-    },
-
     customDisplayFormat: {
       type: String
     },
@@ -78,32 +57,20 @@ export default defineComponent({
       if (this.customValueFormat) {
         return this.customValueFormat
       }
-      // Маски по стандартным способам хранения даты и времени
-      switch (this.pickerType) {
-        case 'date':
-          return 'YYYY-MM-DD'
-        case 'time':
-          return 'HH:mm:ss'
-      }
-      return 'YYYY-MM-DD HH:mm:ss'
+      return 'HH:mm:ss'
     },
     displayValue() {
-      return this.modelValue
-      let mask = i18n.global.t('maskLocaleDateTime')
+      let mask = i18n.global.t('maskLocaleTime')
       if (this.customDisplayFormat) {
         mask = this.customDisplayFormat
-      } else {
-        // Маски по стандартным способам хранения даты и времени
-        switch (this.pickerType) {
-          case 'date':
-            mask = i18n.global.t('maskLocaleDate')
-            break
-          case 'time':
-            mask = i18n.global.t('maskLocaleTime')
-            break
-        }
       }
-      return date.formatDate(this.modelValue, mask)
+      console.warn(this.modelValue)
+      if (this.modelValue){
+        const dateObj = date.extractDate(this.modelValue, 'HH:mm:ss')
+        return date.formatDate(dateObj, 'HH:mm')
+      }
+      return undefined
+
     }
   },
   mounted() {

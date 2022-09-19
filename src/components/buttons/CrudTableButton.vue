@@ -1,5 +1,5 @@
 <template>
-  <q-btn :to="to" size="sm" padding="5px 10px" class="q-mr-xs" unelevated outline :color="color" :label="label"
+  <q-btn :to="to" size="sm" padding="4px 10px" class="q-mr-xs" unelevated outline :color="color" :label="label"
          :icon="icon"
          @click="$emit('clickBtn')"></q-btn>
 </template>
