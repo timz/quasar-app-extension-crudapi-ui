@@ -28,18 +28,19 @@
     </template>
 
     <template v-slot:body-cell-buttons="props">
-      <q-td :props="props" style="flex-wrap: nowrap; min-width: 95px; width: 1%; padding-right: 5px">
+      <q-td :props="props" style=" width:1%; white-space:nowrap;">
+
         <slot name="extra-buttons" :props="props"></slot>
 
-        <crud-table-button icon="edit" v-if="buttons.includes('editModal')"
-                           @clickBtn="openDialog(props.row[store.getPkField])"
-        />
+<!--        <crud-table-button icon="edit" v-if="buttons.includes('editModal')"-->
+<!--                           @clickBtn="openDialog(props.row[store.getPkField])"-->
+<!--        />-->
 
-        <crud-table-button icon="edit" v-if="buttons.includes('edit')"
+        <crud-table-button icon="edit" v-if="store.getUserCanEdit"
                            :to="{ name: store.getEditPageRoute , params: {id: props.row[store.getPkField]}}"
         />
 
-        <q-btn :disable="loading" v-if="buttons.includes('delete')" size="sm" padding="4px 10px" class="del-confirm-btn"
+        <q-btn :disable="loading" v-if="store.getUserCanDelete" size="sm" padding="4px 10px" class="del-confirm-btn"
                outline color="pink-5" icon="delete">
           <q-menu anchor="center left" self="center right"
                   class="non-selectable bg-blue-grey-7 text-white q-pa-sm items-center">
@@ -77,9 +78,7 @@ export default {
     caption: {
       type: String,
       default: ''
-    },
-
-
+    }
   },
   data: function () {
     return {
@@ -155,6 +154,7 @@ export default {
   },
   mounted() {
     this.fetchData()
+
   },
 }
 </script>

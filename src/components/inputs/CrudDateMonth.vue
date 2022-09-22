@@ -2,15 +2,17 @@
   <q-input ref="field" :model-value="displayValue" :dense="dense" :outlined="outlined" :label="label" reactive-rules
            lazy-rules :rules="rules">
     <template #append>
-      <q-btn dense unelevated outline color="secondary" icon="access_time">
-        <q-popup-proxy ref="qTimeProxy">
-          <q-time minimal :model-value="value" @update:model-value="onUpdateValue" :mask="valueFormat" emit-immediately
-                  :minute-options="[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]"
-                  format24h>
+      <q-btn dense unelevated outline color="secondary" icon="event">
+        <q-popup-proxy ref="qDateProxy">
+          <q-date ref="rDate" default-view="Months" years-in-month-view emit-immediately minimal
+                  :mask="valueFormat"
+                  :model-value="value"
+                  @update:model-value="onUpdateValue"
+          >
             <div class="row items-center justify-end">
               <q-btn v-close-popup label="Закрыть" color="primary" flat/>
             </div>
-          </q-time>
+          </q-date>
         </q-popup-proxy>
       </q-btn>
     </template>
@@ -23,7 +25,7 @@ import {i18n} from '../../boot/i18n'
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: "CrudTime",
+  name: "CrudDateMonth",
   inheritAttrs: false,
   props: {
     rules: {
@@ -53,23 +55,15 @@ export default defineComponent({
   }),
   computed: {
     valueFormat() {
-      //Если в базе dataTime поле хранится экзотически, то берем эту маску:
-      if (this.customValueFormat) {
-        return this.customValueFormat
-      }
-      return 'HH:mm:ss'
+      return this.customValueFormat ?? 'YYYY-MM-01'
     },
     displayValue() {
-      let mask = i18n.global.t('maskLocaleTime')
-      if (this.customDisplayFormat) {
-        mask = this.customDisplayFormat
-      }
-      if (this.modelValue){
-        const dateObj = date.extractDate(this.modelValue, 'HH:mm:ss')
-        return date.formatDate(dateObj, 'HH:mm')
+      let mask = this.customDisplayFormat ?? "MM.YYYY"
+      if (this.modelValue) {
+        const dateObj = date.extractDate(this.modelValue, 'YYYY-MM-01')
+        return date.formatDate(dateObj, mask)
       }
       return undefined
-
     }
   },
   mounted() {
@@ -79,7 +73,8 @@ export default defineComponent({
   methods: {
     onUpdateValue(value, reason, details) {
       this.value = value
-      this.$emit('update:model-value', value);
+      this.$emit('update:model-value', value)
+      this.$refs.rDate.setView('Months')
     },
     validate(...args) {
       return this.$refs.field.validate(this.modelValue)

@@ -14,7 +14,7 @@ export default ({app}) => {
       return (val) => (val == null || val.length === fixLength) ||errMsg
     },
     required: (val, errMsg = t('validation.required')) => {
-      return (val) => (val !== null && val !== '') || errMsg
+      return (val) => (val !== undefined && val !== null && val !== '') || errMsg
     },
     numMax: (maxVal,val,  errMsg = t('validation.numberMax', {vl: maxVal})) => {
       return (val) => (val == null || val <= maxVal) || errMsg

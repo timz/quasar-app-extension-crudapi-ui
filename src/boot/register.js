@@ -12,6 +12,7 @@ import CrudString from '../components/inputs/CrudString'
 import CrudCheckbox from '../components/inputs/CrudCheckbox'
 import CrudDateTime from '../components/inputs/CrudDateTime'
 import CrudDate from '../components/inputs/CrudDate'
+import CrudDateMonth from '../components/inputs/CrudDateMonth'
 import CrudTime from '../components/inputs/CrudTime'
 import CrudMobile from '../components/inputs/CrudMobile'
 import CrudNumber from '../components/inputs/CrudNumber'
@@ -32,6 +33,7 @@ export default boot(({ app }) => {
   app.component(CrudCheckbox.name, CrudCheckbox)
   app.component(CrudDateTime.name, CrudDateTime)
   app.component(CrudDate.name, CrudDate)
+  app.component(CrudDateMonth.name, CrudDateMonth)
   app.component(CrudTime.name, CrudTime)
   app.component(CrudMobile.name, CrudMobile)
   app.component(CrudNumber.name, CrudNumber)

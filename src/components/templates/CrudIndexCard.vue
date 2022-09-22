@@ -7,6 +7,8 @@
         </q-toolbar-title>
       </q-toolbar>
       <div class="row items-center bg-blue-grey-9 text-white">
+        <crud-button-in-bar v-if="store.getUserCanCreate" label="Создать"
+                            @clickBtn="$router.push({ name: store.getEditPageRoute})"></crud-button-in-bar>
         <slot v-if="$slots.buttonsBar" name="buttonsBar"></slot>
         <q-space v-if="$slots['filter-form']"/>
         <q-toggle v-if="$slots['filter-form']" color="secondary" v-model="filterPanel" label="Фильтр"

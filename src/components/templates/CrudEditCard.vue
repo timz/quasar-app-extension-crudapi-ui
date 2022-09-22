@@ -9,9 +9,20 @@
           <div class="row q-col-gutter-sm">
             <slot></slot>
           </div>
-          <q-btn class="q-mt-md q-mr-md" unelevated :label="store.editModel._forceSave===true?'Перезаписать':'Сохранить'"
-                 type="submit" color="secondary"></q-btn>
-          <q-btn class="q-mt-md" unelevated label="Сбросить" color="blue-grey-1 text-blue-grey-8" @click="loadModel"></q-btn>
+          <div class="row q-gutter-sm">
+            <q-btn class="q-mt-md" outline
+                   icon="navigate_before"
+                   label="Назад к списку" color="secondary" @click="$router.push({ name: store.getIndexPageRoute})"></q-btn>
+            <q-space/>
+            <q-btn class="q-mt-md" outline
+                   icon="restart_alt"
+                   label="Сбросить" color="secondary" @click="loadModel"></q-btn>
+            <q-btn class="q-mt-md" unelevated
+                   icon="save"
+                   :label="store.editModel._forceSave===true?'Перезаписать':'Сохранить'"
+                   type="submit" color="secondary"></q-btn>
+          </div>
+
 
         </q-form>
       </div>
@@ -75,7 +86,7 @@ const submitModel = async () => {
 }
 
 onMounted(async () => {
-await loadModel()
+  await loadModel()
 })
 </script>
 

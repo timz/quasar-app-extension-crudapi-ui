@@ -12,10 +12,18 @@ function extendConf (conf) {
   conf.framework.cssAddon = true
 
   // register our boot file
+  conf.boot.push('~quasar-app-extension-crudapi-ui/src/boot/i18n.js')
+  conf.boot.push('~quasar-app-extension-crudapi-ui/src/boot/moment.js')
   conf.boot.push('~quasar-app-extension-crudapi-ui/src/boot/register.js')
   conf.boot.push('~quasar-app-extension-crudapi-ui/src/boot/validators.js')
   conf.boot.push('~quasar-app-extension-crudapi-ui/src/boot/unwrapInjectedRef.js')
   conf.boot.push('~quasar-app-extension-crudapi-ui/src/boot/axios.js')
+
+  conf.css.push('~quasar-app-extension-crudapi-ui/src/css/app.scss')
+
+  // conf.boot.push('~quasar-app-extension-crudapi-ui/src/boot/helpers.js')
+
+
 
   // make sure app extension files & ui package gets transpiled
   conf.build.transpileDependencies.push(/quasar-app-extension-crudapi-ui[\\/]src/)

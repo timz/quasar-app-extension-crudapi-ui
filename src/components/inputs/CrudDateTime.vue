@@ -31,7 +31,7 @@
 
 <script>
 import {useFormChild, date} from 'quasar'
-import {i18n} from 'boot/i18n'
+import {i18n} from '../../boot/i18n'
 import {defineComponent} from 'vue'
 
 export default defineComponent({
