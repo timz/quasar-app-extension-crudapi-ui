@@ -2,7 +2,7 @@
   <q-page padding>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 q-mb-md q-pr-md">
-        <h5 class="q-mt-sm q-mb-lg">
+        <h5 class="q-mt-sm q-mb-sm">
           {{ titlePage ?? 'Заголовок страницы не указан в router.meta.titleEdit/titleNew' }}
         </h5>
         <q-form ref="editForm" greedy @submit="submitModel">
