@@ -1,5 +1,5 @@
 <template>
-  <q-input :loading="isLoading" hide-bottom-space clearable :dense="dense" :outlined="outlined" :autogrow="typeVal==='textarea'" :suffix="suffix"
+  <q-input hide-bottom-space clearable :dense="dense" :outlined="outlined" :autogrow="typeVal==='textarea'" :suffix="suffix"
            :type="typeVal" reactive-rules ref="input" :value="value"
            :mask="mask" :prefix="prefix"
            :label="label" :rules="rules"
@@ -11,7 +11,7 @@ import {defineComponent} from 'vue'
 
 export default defineComponent({
   name: 'CrudString',
-  inject: ['isLoading'],
+  // inject: ['isLoading'],
   props: {
     rules: {
       type: Array,

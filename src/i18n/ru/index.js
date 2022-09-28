@@ -15,6 +15,7 @@ export default {
     stringMaxLength: 'Поле должно быть короче {vl} символов',
     stringMinLength: 'Поле должно быть длиннее {vl} символов',
     stringFixLength: 'Поле должно содержать {vl} символов',
+    stringRegexp: 'Поле должно соответствовать маске {vl}',
     numberMax: 'Поле должно быть меньше {vl}',
     numberMin: 'Поле должно быть больше {vl}',
     dateTime: 'Введите правильную дату и время',

@@ -11,7 +11,10 @@ export default ({app}) => {
       return (val) => (val == null || val.length >= minLength) || errMsg
     },
     strFixLength: (fixLength, val,  errMsg = t('validation.stringFixLength', {vl: fixLength})) => {
-      return (val) => (val == null || val.length === fixLength) ||errMsg
+      return (val) => (val === undefined || val.length === fixLength) ||errMsg
+    },
+    strRegexp: (regexpStr, val,  errMsg = t('validation.stringRegexp', {vl: regexpStr})) => {
+      return (val) => (val === undefined || new RegExp(regexpStr).test(val)) ||errMsg
     },
     required: (val, errMsg = t('validation.required')) => {
       return (val) => (val !== undefined && val !== null && val !== '') || errMsg
