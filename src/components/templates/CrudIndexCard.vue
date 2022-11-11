@@ -1,5 +1,5 @@
 <template>
-  <q-card class="my-card q-ma-md" flat bordered square>
+  <q-card bordered class="my-card q-ma-md" flat square>
     <div class="bg-blue-grey-10 text-white">
       <q-toolbar>
         <q-toolbar-title>
@@ -11,7 +11,7 @@
                             @clickBtn="$router.push({ name: store.getEditPageRoute})"></crud-button-in-bar>
         <slot v-if="$slots.buttonsBar" name="buttonsBar"></slot>
         <q-space v-if="$slots['filter-form']"/>
-        <q-toggle v-if="$slots['filter-form']" color="secondary" v-model="filterPanel" label="Фильтр"
+        <q-toggle v-if="$slots['filter-form']" v-model="filterPanel" color="secondary" label="Фильтр"
                   left-label/>
       </div>
     </div>
@@ -20,8 +20,8 @@
       <div class="column">
         <q-form class="row q-gutter-xs">
           <slot name="filter-form"></slot>
-          <q-btn class="self-center" unelevated outline label="Сброс" @click="store.resetFilter()"
-                 color="secondary"></q-btn>
+          <q-btn class="self-center" color="secondary" label="Сброс" outline unelevated
+                 @click="store.resetFilter()"></q-btn>
         </q-form>
 
       </div>
@@ -49,11 +49,6 @@ export default {
       }
     }
   },
-  methods: {
-    /*resetFilter() {
-      this.filterPanel = false
-      this.store.resetFilter()
-    }*/
-  },
+  methods: {},
 }
 </script>

@@ -31,11 +31,6 @@
       <q-td :props="props" style=" width:1%; white-space:nowrap;">
 
         <slot name="extra-buttons" :props="props"></slot>
-
-<!--        <crud-table-button icon="edit" v-if="buttons.includes('editModal')"-->
-<!--                           @clickBtn="openDialog(props.row[store.getPkField])"-->
-<!--        />-->
-
         <crud-table-button icon="edit" v-if="store.getUserCanEdit"
                            :to="{ name: store.getEditPageRoute , params: {id: props.row[store.getPkField]}}"
         />
