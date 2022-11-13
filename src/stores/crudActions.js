@@ -120,7 +120,7 @@ export const getters = {
     const columns = toRaw(_.get(state, 'crudMeta.indexPage.columns', []))
     const filteredColumns = _.filter(columns, function (col) {
       const permissions = col.permissions
-      // if (!permissions){
+      //! if (!permissions){
       //   return true
       // }
       return _meStore.userCan(permissions)
